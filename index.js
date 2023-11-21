@@ -558,7 +558,6 @@ const paginate = (items, page = 1, perPage = 12) => {
 app.get("/", (req, res) => {
   res.send(`
         <a href='/jobs'>/jobs?search=&location=&fulltime=1&page=&limit=</h3>
-       
     `);
 });
 app.get("/jobs", (req, res) => {
@@ -580,6 +579,16 @@ app.get("/jobs", (req, res) => {
   }
 
   res.json(paginate(result, page, limit));
+});
+
+app.get("/jobs/:id", (req, res) => {
+  const { id } = req.params;
+  if (id) {
+    const result = data.find(d => d.id == id);
+    res.json(result);
+    return;
+  }
+  res.json({});
 });
 
 const PORT = process.env.PORT;
