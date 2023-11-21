@@ -555,6 +555,12 @@ const paginate = (items, page = 1, perPage = 12) => {
   };
 };
 
+app.get("/", (req, res) => {
+  res.send(`
+        <a href='/jobs'>/jobs?search=&location=&fulltime=1&page=&limit=</h3>
+       
+    `);
+});
 app.get("/jobs", (req, res) => {
   const { search, page, limit, location, fulltime } = req.query;
 
